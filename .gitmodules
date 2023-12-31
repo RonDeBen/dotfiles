@@ -1,0 +1,3 @@
+[submodule ".config/home-manager"]
+	path = .config/home-manager
+	url = https://github.com/RonDeBen/home-manager
