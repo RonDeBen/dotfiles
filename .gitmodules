@@ -1,3 +1,6 @@
 [submodule ".config/home-manager"]
 	path = .config/home-manager
 	url = https://github.com/RonDeBen/home-manager
+[submodule ".config/i3"]
+	path = .config/i3
+	url = https://github.com/RonDeBen/i3
