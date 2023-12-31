@@ -7,3 +7,6 @@
 [submodule ".config/polybar"]
 	path = .config/polybar
 	url = https://github.com/RonDeBen/polybar
+[submodule ".config/nvim"]
+	path = .config/nvim
+	url = git@github.com:RonDeBen/neovim_config.git
