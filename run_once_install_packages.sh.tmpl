@@ -3,46 +3,67 @@
 # {{ if eq .chezmoi.os "darwin" }}
 echo "Installing essential packages on macOS..."
 
-# Install Homebrew if not already installed
+# 🏠 **1️⃣ Install Homebrew (if not installed)**
 if ! command -v brew &>/dev/null; then
     echo "Homebrew not found. Installing..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-
-# Update Homebrew
 brew update
 
-# Install fonts via Homebrew
-brew tap homebrew/cask-fonts
-brew install font-noto-sans-nerd-font
+# 🔠 **2️⃣ Install Fonts**
+brew install --cask font-noto-nerd-font
 fc-cache -fv
-echo "Noto Sans Nerd Font installed via Homebrew."
+echo "✅ Installed Noto Sans Nerd Font"
 
-# Install CLI tools
-brew install fish tmux neovim zoxide eza git gitui ripgrep fzf bat jq fd bottom
+# 🛠 **3️⃣ Install Core CLI Utilities**
+brew install fish tmux neovim zoxide eza git gitui ripgrep fzf bat jq fd bottom starship tree tree-sitter
 
-# Install optional tools (comment out any that aren't needed)
+# 🖥 **4️⃣ Install Programming Languages & Tools**
+brew install node lua zig rustup postgresql
+
+# Install Elixir via `asdf`
+if ! command -v asdf &>/dev/null; then
+    echo "Installing asdf for version management..."
+    brew install asdf
+fi
+
+echo "Installing Elixir via asdf..."
+asdf plugin-add elixir || true
+asdf install elixir latest
+asdf global elixir latest
+
+# 🚀 **5️⃣ Install Language Servers (LSPs)**
 brew install \
-    node \
-    lua \
-    zig \
     typescript-language-server \
     yaml-language-server \
-    sqlfluff \
+    lua-language-server \
+    elixir-ls \
+    rust-analyzer
+
+# 🔧 **6️⃣ Install Formatters**
+brew install \
+    prettier \
     shfmt \
-    tree \
-    tree-sitter \
-    postgresql \
-    starship
+    sqlfluff \
+    taplo \
+    nixfmt \
+    zigfmt \
+    yamlfmt \
+    pgformatter \
+    stylua
 
+# 🔍 **7️⃣ Install Linters**
+brew install \
+    luacheck \
+    eslint_d \
+    yamllint \
+    sqlfluff \
+    statix
 
-    # mongosh \
-    # natscli
+# 📦 **8️⃣ Install GUI Apps**
+brew install --cask alacritty raycast nikitabobko/tap/aerospace
 
-# Install GUI apps via Homebrew Cask
-brew install --cask alacritty
-
-# Apply tmux packages
+# 🔌 **9️⃣ Set up Tmux Plugin Manager (TPM)**
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 else
@@ -51,14 +72,11 @@ fi
 echo "Installing tmux plugins..."
 $HOME/.tmux/plugins/tpm/bin/install_plugins
 
-echo "Setting up GPG pinentry for macOS..."
-
-# Ensure ~/.gnupg exists with the correct permissions
+# 🔑 **🔟 Set up GPG Pinentry for macOS**
 brew install pinentry-mac
 mkdir -p ~/.gnupg
 chmod 700 ~/.gnupg
 
-# Dynamically detect Homebrew prefix and set pinentry-mac
 BREW_PREFIX=$(brew --prefix)
 echo "pinentry-program $BREW_PREFIX/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 chmod 600 ~/.gnupg/gpg-agent.conf
@@ -67,6 +85,6 @@ chmod 600 ~/.gnupg/gpg-agent.conf
 gpgconf --kill gpg-agent
 gpgconf --launch gpg-agent
 
-echo "Installation complete!"
+echo "✅ Installation complete!"
 # {{ end }}
 

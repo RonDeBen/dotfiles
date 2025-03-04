@@ -1,3 +1,15 @@
+# Set Leader Key to Ctrl+b
+set-option -g prefix C-b
+bind C-b send-prefix
+
+{{ if eq .chezmoi.os "darwin" }}
+# macOS-specific fixes
+set-option -g set-clipboard on
+
+set -g default-terminal "tmux-256color"
+set -ag terminal-overrides ",xterm-256color:Tc"
+{{ end }}
+
 # Enable mouse support
 set -g mouse on
 
@@ -36,4 +48,3 @@ set -g message-command-style fg='#fcfcfa',bg='#2d2a2e'
 
 # Initialize TPM (Tmux Plugin Manager)
 run '~/.tmux/plugins/tpm/tpm'
-

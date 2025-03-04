@@ -1,0 +1,157 @@
+# 🚀 Auto-start apps after AeroSpace login
+after-login-command = []
+
+# 🚀 Auto-start commands after AeroSpace starts
+after-startup-command = [
+  "~/.config/aerospace/nasa-wallpaper.sh",
+  "move-workspace-to-monitor 1 DELL S2421NX",
+  "move-workspace-to-monitor 4 Built-in Retina Display",
+  "move-workspace-to-monitor 6 DELL U2415"
+]
+
+# ✅ Auto-start AeroSpace at login
+start-at-login = true
+
+# 🏠 Default Layout Settings
+default-root-container-layout = "tiles"
+default-root-container-orientation = "auto"
+
+# 🖥️ Window Normalization Settings
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# 🖱️ Mouse follows focus when switching monitors
+on-focused-monitor-changed = ["move-mouse monitor-lazy-center"]
+
+# 🖼️ Gaps Between Windows & Edges
+[gaps]
+    inner.horizontal = 8
+    inner.vertical =   8
+    outer.left =       10
+    outer.bottom =     10
+    outer.top =        10
+    outer.right =      10
+
+# ⌨️ **Keybindings (Mod key = Super)**:
+[key-mapping]
+    preset = "qwerty"
+
+[mode.main.binding]
+    # 🚀 Launch Alacritty (Terminal)
+    super-return = "exec-and-forget alacritty"
+    super-t = "exec-and-forget alacritty"
+
+    # 🎯 Focus Window Movement (Vim + Arrow Keys)
+    super-h = "focus left"
+    super-j = "focus down"
+    super-k = "focus up"
+    super-l = "focus right"
+
+    super-left = "focus left"
+    super-down = "focus down"
+    super-up = "focus up"
+    super-right = "focus right"
+
+    # 🔄 Move Window (Vim + Arrow Keys)
+    super-shift-h = "move left"
+    super-shift-j = "move down"
+    super-shift-k = "move up"
+    super-shift-l = "move right"
+
+    super-shift-left = "move left"
+    super-shift-down = "move down"
+    super-shift-up = "move up"
+    super-shift-right = "move right"
+
+    [workspace-to-monitor-force-assignment]
+    # Workspaces 1-3 go to your main monitor
+    "1" = "DELL S2421Nx"
+    "2" = "DELL S2421Nx"
+    "3" = "DELL S2421Nx"
+
+    # Workspaces 4-5 go to the laptop monitor
+    "4" = "Built-in Retina Display"
+    "5" = "Built-in Retina Display"
+
+    # Workspaces 6-7 go to the vertical monitor
+    "6" = "DELL U2415"
+    "7" = "DELL U2415"
+
+
+    # 📑 Layout Controls
+    super-h = "split horizontal"
+    super-v = "split vertical"
+    super-f = "fullscreen toggle"
+    super-s = "layout stacking"
+    super-w = "layout tabbed"
+    super-e = "layout toggle_split"
+    super-shift-space = "layout floating tiling"
+    super-space = "focus mode_toggle"
+
+    # 🖥️ Workspaces
+    super-1 = "workspace 1"
+    super-2 = "workspace 2"
+    super-3 = "workspace 3"
+    super-4 = "workspace 4"
+    super-5 = "workspace 5"
+    super-6 = "workspace 6"
+    super-7 = "workspace 7"
+    super-8 = "workspace 8"
+    super-9 = "workspace 9"
+    super-0 = "workspace 10"
+
+    # 📦 Move Containers Between Workspaces
+    super-shift-1 = "move-node-to-workspace 1"
+    super-shift-2 = "move-node-to-workspace 2"
+    super-shift-3 = "move-node-to-workspace 3"
+    super-shift-4 = "move-node-to-workspace 4"
+    super-shift-5 = "move-node-to-workspace 5"
+    super-shift-6 = "move-node-to-workspace 6"
+    super-shift-7 = "move-node-to-workspace 7"
+    super-shift-8 = "move-node-to-workspace 8"
+    super-shift-9 = "move-node-to-workspace 9"
+    super-shift-0 = "move-node-to-workspace 10"
+
+    # 🔁 Switch between workspaces
+    super-tab = "workspace-back-and-forth"
+    super-shift-tab = "move-workspace-to-monitor --wrap-around next"
+
+    # 🔧 Resize Mode
+    super-r = "mode resize"
+
+    # 🔄 Restart & Reload AeroSpace
+    super-shift-c = "reload-config"
+    super-shift-r = "restart"
+
+    # ❌ Kill Window
+    super-shift-q = "close-window"
+
+
+# 🔧 **Resize Mode**
+[mode.resize.binding]
+    j = "resize smart -50"
+    k = "resize smart +50"
+    l = "resize smart -50"
+    semicolon = "resize smart +50"
+    return = "mode main"
+    escape = "mode main"
+    super-r = "mode main"
+
+# 🔧 **Service Mode (Advanced Controls)**
+[mode.service.binding]
+    esc = ["reload-config", "mode main"]
+    r = ["flatten-workspace-tree", "mode main"]  # Reset layout
+    f = ["layout floating tiling", "mode main"]  # Toggle floating/tiling
+    backspace = ["close-all-windows-but-current", "mode main"]
+
+    # Join windows into single split container
+    super-shift-h = ["join-with left", "mode main"]
+    super-shift-j = ["join-with down", "mode main"]
+    super-shift-k = ["join-with up", "mode main"]
+    super-shift-l = ["join-with right", "mode main"]
+
+    # 🔊 Volume Controls
+    down = "volume down"
+    up = "volume up"
+    shift-down = ["volume set 0", "mode main"]
+
