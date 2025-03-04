@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# {{ if eq .chezmoi.os "darwin" }}
+echo "Installing essential packages on macOS..."
+
+# Install Homebrew if not already installed
+if ! command -v brew &>/dev/null; then
+    echo "Homebrew not found. Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Update Homebrew
+brew update
+
+# Install fonts via Homebrew
+brew tap homebrew/cask-fonts
+brew install font-noto-sans-nerd-font
+fc-cache -fv
+echo "Noto Sans Nerd Font installed via Homebrew."
+
+# Install CLI tools
+brew install fish tmux neovim zoxide eza git gitui ripgrep fzf bat jq fd bottom
+
+# Install optional tools (comment out any that aren't needed)
+brew install \
+    node \
+    lua \
+    zig \
+    typescript-language-server \
+    yaml-language-server \
+    sqlfluff \
+    shfmt \
+    tree \
+    tree-sitter \
+    # mongosh \
+    postgresql \
+    # natscli
+
+# Install GUI apps via Homebrew Cask
+brew install --cask alacritty
+
+# slack brave-browser vlc
+
+echo "Installation complete!"
+# {{ end }}
+
