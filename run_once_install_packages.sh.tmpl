@@ -32,14 +32,31 @@ brew install \
     shfmt \
     tree \
     tree-sitter \
-    # mongosh \
     postgresql \
+    starship
+
+
+    # mongosh \
     # natscli
 
 # Install GUI apps via Homebrew Cask
 brew install --cask alacritty
 
-# slack brave-browser vlc
+echo "Setting up GPG pinentry for macOS..."
+
+# Ensure ~/.gnupg exists with the correct permissions
+brew install pinentry-mac
+mkdir -p ~/.gnupg
+chmod 700 ~/.gnupg
+
+# Dynamically detect Homebrew prefix and set pinentry-mac
+BREW_PREFIX=$(brew --prefix)
+echo "pinentry-program $BREW_PREFIX/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
+chmod 600 ~/.gnupg/gpg-agent.conf
+
+# Restart GPG agent
+gpgconf --kill gpg-agent
+gpgconf --launch gpg-agent
 
 echo "Installation complete!"
 # {{ end }}
