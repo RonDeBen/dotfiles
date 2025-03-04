@@ -1,0 +1,6 @@
+encryption = "gpg"
+
+[gpg]
+    recipient = "C3D5A5CD6F51157B"
+    args = ["--armor"]
+

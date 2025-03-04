@@ -42,6 +42,15 @@ brew install \
 # Install GUI apps via Homebrew Cask
 brew install --cask alacritty
 
+# Apply tmux packages
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+else
+    cd ~/.tmux/plugins/tpm && git pull
+fi
+echo "Installing tmux plugins..."
+$HOME/.tmux/plugins/tpm/bin/install_plugins
+
 echo "Setting up GPG pinentry for macOS..."
 
 # Ensure ~/.gnupg exists with the correct permissions
