@@ -1,0 +1,9 @@
+[brew]
+greedy_cask = true   # Upgrade cask apps, even if they auto-update
+greedy_latest = true # Upgrade formulae to latest versions
+greedy_auto_updates = true
+autoremove = true    # Remove outdated dependencies
+
+[git]
+max_concurrency = 5  # Pull multiple repos in parallel
+pull_predefined = true

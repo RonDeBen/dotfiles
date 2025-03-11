@@ -9,71 +9,71 @@ ITEM_DIR="$HOME/.config/sketchybar/items"
 
 ##### Bar Appearance #####
 sketchybar --bar \
-  margin=10 y_offset=2 height=25 \
-  corner_radius=6 blur_radius=5 \
-  border_width=1 border_color=0x28222222 \
-  padding_left=10 padding_right=10 \
-  shadow.color=0x28000000 shadow.angle=0 \
-  color=0xcc2D2A2E \
-  display=3
+    margin=10 y_offset=2 height=25 \
+    corner_radius=6 blur_radius=5 \
+    border_width=1 border_color=0x28222222 \
+    padding_left=10 padding_right=10 \
+    shadow.color=0x28000000 shadow.angle=0 \
+    color=0xcc2D2A2E \
+    display=1
 
 sketchybar --default \
-  label.font="NotoSansM Nerd Font Mono:Regular:11.5" label.color=0xffcdd6f4 \
-  label.padding_left=8 label.padding_right=8 \
-  icon.font="NotoSansM Nerd Font Mono:Regular:16" \
-  icon.padding_left=8 \
-  background.color=0x503d3c53 \
-  background.padding_right=6 background.height=25 \
-  background.corner_radius=6
+    label.font="NotoSansM Nerd Font Mono:Regular:11.5" label.color=0xffcdd6f4 \
+    label.padding_left=8 label.padding_right=8 \
+    icon.font="NotoSansM Nerd Font Mono:Regular:16" \
+    icon.padding_left=8 \
+    background.color=0x503d3c53 \
+    background.padding_right=6 background.height=25 \
+    background.corner_radius=6
 
 ##### Showing Current Workspace Only #####
 sketchybar --add item current_workspace left \
-  --set current_workspace \
-  script="$PLUGIN_DIR/current_workspace.sh" \
-  update_freq=1 color=0xffcdd6f4
+    --set current_workspace \
+    script="$PLUGIN_DIR/current_workspace.sh" \
+    update_freq=1 color=0xffcdd6f4
 
 ##### Adding Left Items #####
 sketchybar --add item os left \
-  --set os \
-  icon= icon.color=0xfff5c2e7 \
-  icon.font.size=21 icon.y_offset=2 \
-  icon.padding_left=0 icon.padding_right=0 \
-  label.padding_left=0 label.padding_right=6 \
-  background.drawing=off
+    --set os \
+    icon= icon.color=0xfff5c2e7 \
+    icon.font.size=21 icon.y_offset=2 \
+    icon.padding_left=0 icon.padding_right=0 \
+    label.padding_left=0 label.padding_right=6 \
+    background.drawing=off
 
 sketchybar --add item weather left \
-  --set weather \
-  icon=󰖐 \
-  script="$PLUGIN_DIR/weather.sh" \
-  update_freq=1500 \
-  --subscribe weather mouse.clicked
+    --set weather \
+    icon=󰖐 \
+    script="$PLUGIN_DIR/weather.sh" \
+    update_freq=1500 \
+    --subscribe weather mouse.clicked
 
 sketchybar --add item moon-phase left \
-  --set moon-phase \
-  icon= \
-  script="$PLUGIN_DIR/moon-phase.sh" \
-  update_freq=3600 \
-  --subscribe moon-phase mouse.clicked
+    --set moon-phase \
+    icon= \
+    script="$PLUGIN_DIR/moon-phase.sh" \
+    update_freq=3600 \
+    --subscribe moon-phase mouse.clicked
 
 ##### Adding Center Items #####
 sketchybar --add item clock center \
-  --set clock \
-  script="$PLUGIN_DIR/clock.sh" \
-  background.padding_right=0 \
-  update_freq=10
+    --set clock \
+    script="$PLUGIN_DIR/clock.sh" \
+    background.padding_right=0 \
+    update_freq=10
 
 ##### Adding Right Items #####
 sketchybar --add item battery right \
-  --set battery \
-  script="$PLUGIN_DIR/battery.sh" \
-  update_freq=60
+    --set battery \
+    script="$PLUGIN_DIR/battery.sh" \
+    update_freq=60
 
 sketchybar --add item volume right \
-  --set volume \
-  script="$PLUGIN_DIR/volume.sh" \
-  click_script="osascript -e 'set volume output muted not (output muted of (get volume settings))'" \
-  scroll_script="sketchybar --trigger volume_change" \
-  --subscribe volume volume_change mouse.clicked mouse.scrolled
+    --set volume \
+    script="$PLUGIN_DIR/volume.sh" \
+    click_script="osascript -e 'set volume output muted not (output muted of (get volume settings))'" \
+    scroll_script="sketchybar --trigger volume_change" \
+    --subscribe volume volume_change mouse.clicked mouse.scrolled
 
 # Use macOS default Bluetooth and WiFi menu bar items in Sketchybar with dynamic colors
 # sketchybar --add alias "Control Center,Bluetooth" right \
@@ -87,7 +87,6 @@ sketchybar --add item volume right \
 #   update_freq=5 \
 #   script="$PLUGIN_DIR/wifi_status.sh" \
 #   click_script="open /System/Library/PreferencePanes/Network.prefPane"
-
 
 ##### Force all scripts to run the first time #####
 sketchybar --update

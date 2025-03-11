@@ -1,58 +1,112 @@
 #!/bin/bash
 
-# {{ if eq .chezmoi.os "darwin" }}
-echo "Installing essential packages on macOS..."
+echo "🔧 Setting up macOS environment"
 
-# 🏠 **1️⃣ Install Homebrew (if not installed)**
+# 🏠 ** Install Homebrew (if not installed)**
 if ! command -v brew &>/dev/null; then
-    echo "Homebrew not found. Installing..."
+    echo "📦 Homebrew not found. Installing..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 brew update
 
-# 🔠 **2️⃣ Install Fonts**
+# 🔠 ** Install Fonts**
 brew install --cask font-noto-nerd-font
 fc-cache -fv
 echo "✅ Installed Noto Sans Nerd Font"
 
-# 🛠 **3️⃣ Install Core CLI Utilities**
-brew install fish tmux neovim zoxide eza git gitui ripgrep fzf bat jq fd bottom starship tree tree-sitter
+# 🛠 ** Install Core CLI Utilities**
+brew install fish \
+    tmux \
+    git \
+    zoxide \
+    eza \
+    gitui \
+    ripgrep \
+    fzf \
+    bat \
+    jq \
+    fd \
+    bottom \
+    starship \
+    tree \
+    tree-sitter \
+    topgrade
 
-# 🖥 **4️⃣ Install Programming Languages & Tools**
-brew install node lua zig rustup postgresql
+# 📦 ** Install GUI Apps**
+brew install --cask alacritty raycast nikitabobko/tap/aerospace
 
-# Install Elixir via `asdf`
+# 📝 ** Install Sketchybar**
+brew tap FelixKratz/formulae
+brew install sketchybar
+
+# 🚀 ** Install `asdf` for Version Management**
 if ! command -v asdf &>/dev/null; then
-    echo "Installing asdf for version management..."
+    echo "📦 Installing asdf..."
     brew install asdf
 fi
 
-echo "Installing Elixir via asdf..."
-asdf plugin-add elixir || true
-asdf install elixir latest
-asdf global elixir latest
+# 🚀 ** Install `asdf` Plugins & Latest Versions**
+echo "📦 Installing programming languages with asdf..."
 
-# 🚀 **5️⃣ Install Language Servers (LSPs)**
+asdf plugin add python || true
+asdf plugin add nodejs || true
+asdf plugin add pnpm || true
+asdf plugin add elixir || true
+asdf plugin add erlang || true
+asdf plugin add dotnet-core || true
+asdf plugin add postgres || true
+asdf plugin add neovim || true
+
+asdf install python latest
+asdf install nodejs latest
+asdf install pnpm latest
+asdf install elixir latest
+asdf install erlang latest
+asdf install dotnet latest
+asdf install postgres latest
+asdf install neovim latest
+
+# asdf global python latest
+# asdf global nodejs latest
+# asdf global pnpm latest
+# asdf global elixir latest
+# asdf global erlang latest
+# asdf global dotnet latest
+# asdf global postgres latest
+# asdf global neovim latest
+
+echo "✅ asdf setup complete!"
+
+# 💬 Install Languages
+brew install \
+    rustup \
+    zigup
+
+# 🔧 ** Install Language Servers **
 brew install \
     typescript-language-server \
     yaml-language-server \
     lua-language-server \
     elixir-ls \
-    rust-analyzer
+    rust-analyzer \
+    llvm
 
-# 🔧 **6️⃣ Install Formatters**
+# Taken from this discussion: https://stackoverflow.com/questions/53111082/how-to-install-clang-tidy-on-macos
+ln -s "$(brew --prefix llvm)/bin/clang-format" "/usr/local/bin/clang-format"
+ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
+ln -s "$(brew --prefix llvm)/bin/clang-apply-replacements" "/usr/local/bin/clang-apply-replacements"
+
+# 🔧 ** Install Formatters**
 brew install \
     prettier \
     shfmt \
     sqlfluff \
     taplo \
-    nixfmt \
-    zigfmt \
     yamlfmt \
     pgformatter \
     stylua
 
-# 🔍 **7️⃣ Install Linters**
+# 🔍 ** Install Linters**
 brew install \
     luacheck \
     eslint_d \
@@ -60,23 +114,16 @@ brew install \
     sqlfluff \
     statix
 
-# 📦 **8️⃣ Install GUI Apps**
-brew install --cask alacritty raycast nikitabobko/tap/aerospace
-
-# 📝 Sketchybar installation
-brew tap FelixKratz/formulae
-brew install sketchybar
-
-# 🔌 **9️⃣ Set up Tmux Plugin Manager (TPM)**
+# 🔌 ** Set up Tmux Plugin Manager **
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 else
     cd ~/.tmux/plugins/tpm && git pull
 fi
-echo "Installing tmux plugins..."
+echo "🔄 Installing Tmux plugins..."
 $HOME/.tmux/plugins/tpm/bin/install_plugins
 
-# 🔑 **🔟 Set up GPG Pinentry for macOS**
+# 🔑 ** Set up GPG Pinentry for macOS**
 brew install pinentry-mac
 mkdir -p ~/.gnupg
 chmod 700 ~/.gnupg
@@ -89,6 +136,4 @@ chmod 600 ~/.gnupg/gpg-agent.conf
 gpgconf --kill gpg-agent
 gpgconf --launch gpg-agent
 
-echo "✅ Installation complete!"
-# {{ end }}
-
+echo "🎉 ✅ macOS setup complete! 🚀"

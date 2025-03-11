@@ -7,12 +7,14 @@ after-startup-command = [
   "move-workspace-to-monitor 4 Built-in Retina Display",
   "move-workspace-to-monitor 6 DELL U2415",
   "layout tiling",
-  "exec-and-forget sketchybar"
+  "exec-and-forget sketchybar",
 ]
 
 # Notify Sketchybar about workspace change
-exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE'
+exec-on-workspace-change = [
+  '/bin/bash',
+  '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE',
 ]
 
 # ✅ Auto-start AeroSpace at login
@@ -35,121 +37,126 @@ inner.horizontal = 8
 inner.vertical = 8
 outer.left = 10
 outer.bottom = 10
-outer.top = [{ monitor."DELL U2415" = 35 }, 10]
+# outer.top = [{ monitor."DELL U2415" = 35 }, 10]
+outer.top = [{ monitor."Built-in Retina Display" = 35 }, 10]
 outer.right = 10
 
 # ⌨️ **Keybindings (Mod key = Super)**:
 [key-mapping]
-    preset = "qwerty"
+preset = "qwerty"
 
 [mode.main.binding]
-    # 🎯 Focus Window Movement (Vim + Arrow Keys)
-    cmd-h = "focus left"
-    cmd-j = "focus down"
-    cmd-k = "focus up"
-    cmd-l = "focus right"
+# 🎯 Focus Window Movement (Vim + Arrow Keys)
+# ctrl-h = "focus left"
+# ctrl-j = "focus down"
+# ctrl-k = "focus up"
+# ctrl-l = "focus right"
 
-    cmd-left = "focus left"
-    cmd-down = "focus down"
-    cmd-up = "focus up"
-    cmd-right = "focus right"
+ctrl-left = "focus left"
+ctrl-down = "focus down"
+ctrl-up = "focus up"
+ctrl-right = "focus right"
 
-    # 🔄 Move Window (Vim + Arrow Keys)
-    cmd-shift-h = "move left"
-    cmd-shift-j = "move down"
-    cmd-shift-k = "move up"
-    cmd-shift-l = "move right"
+# 🔄 Move Window (Vim + Arrow Keys)
+# ctrl-shift-h = "move left"
+# ctrl-shift-j = "move down"
+# ctrl-shift-k = "move up"
+# ctrl-shift-l = "move right"
 
-    cmd-shift-left = "move left"
-    cmd-shift-down = "move down"
-    cmd-shift-up = "move up"
-    cmd-shift-right = "move right"
+ctrl-shift-left = "move left"
+ctrl-shift-down = "move down"
+ctrl-shift-up = "move up"
+ctrl-shift-right = "move right"
 
 
-    # # 📑 Layout Controls
-    # cmd-shift-quote = "split horizontal"
-    # cmd-shift-v = "split vertical"
-    # cmd-f = "fullscreen toggle"
-    # cmd-s = "layout stacking"
-    # cmd-w = "layout tabbed"
-    # cmd-e = "layout toggle_split"
-    # cmd-shift-space = "layout floating tiling"
-    # cmd-space = "focus mode_toggle"
+# # 📑 Layout Controls
+# ctrl-shift-quote = "split horizontal"
+# ctrl-shift-v = "split vertical"
+# ctrl-f = "fullscreen toggle"
+# ctrl-s = "layout stacking"
+# ctrl-w = "layout tabbed"
+# ctrl-e = "layout toggle_split"
+# ctrl-shift-space = "layout floating tiling"
+# ctrl-space = "focus mode_toggle"
 
-    # 🖥️ Workspaces
-    cmd-1 = "workspace 1"
-    cmd-2 = "workspace 2"
-    cmd-3 = "workspace 3"
-    cmd-4 = "workspace 4"
-    cmd-5 = "workspace 5"
-    cmd-6 = "workspace 6"
-    cmd-7 = "workspace 7"
-    cmd-8 = "workspace 8"
-    cmd-9 = "workspace 9"
-    cmd-0 = "workspace 10"
+# 🖥️ Workspaces
+ctrl-1 = "workspace 1"
+ctrl-2 = "workspace 2"
+ctrl-3 = "workspace 3"
+ctrl-4 = "workspace 4"
+ctrl-5 = "workspace 5"
+ctrl-6 = "workspace 6"
+ctrl-7 = "workspace 7"
+ctrl-8 = "workspace 8"
+ctrl-9 = "workspace 9"
+ctrl-0 = "workspace 10"
 
-    # 📦 Move Containers Between Workspaces
-    cmd-shift-1 = "move-node-to-workspace 1"
-    cmd-shift-2 = "move-node-to-workspace 2"
-    cmd-shift-3 = "move-node-to-workspace 3"
-    cmd-shift-4 = "move-node-to-workspace 4"
-    cmd-shift-5 = "move-node-to-workspace 5"
-    cmd-shift-6 = "move-node-to-workspace 6"
-    cmd-shift-7 = "move-node-to-workspace 7"
-    cmd-shift-8 = "move-node-to-workspace 8"
-    cmd-shift-9 = "move-node-to-workspace 9"
-    cmd-shift-0 = "move-node-to-workspace 10"
+# 📦 Move Containers Between Workspaces
+ctrl-shift-1 = "move-node-to-workspace 1"
+ctrl-shift-2 = "move-node-to-workspace 2"
+ctrl-shift-3 = "move-node-to-workspace 3"
+ctrl-shift-4 = "move-node-to-workspace 4"
+ctrl-shift-5 = "move-node-to-workspace 5"
+ctrl-shift-6 = "move-node-to-workspace 6"
+ctrl-shift-7 = "move-node-to-workspace 7"
+ctrl-shift-8 = "move-node-to-workspace 8"
+ctrl-shift-9 = "move-node-to-workspace 9"
+ctrl-shift-0 = "move-node-to-workspace 10"
 
-    # 🔁 Switch between workspaces
-    cmd-tab = "workspace-back-and-forth"
-    cmd-shift-tab = "move-workspace-to-monitor --wrap-around next"
+# 🔁 Switch between workspaces
+ctrl-tab = "workspace-back-and-forth"
+ctrl-shift-tab = "move-workspace-to-monitor --wrap-around next"
 
-    # 🔧 Modes
-    cmd-r = "mode resize"
-    cmd-shift-semicolon = 'mode service'
+# 🔧 Modes
+ctrl-shift-r = "mode resize"
+ctrl-shift-semicolon = 'mode service'
 
-    # 🔄 Restart & Reload AeroSpace
-    cmd-shift-r = "reload-config"
+# 🔄 Restart & Reload AeroSpace
+cmd-shift-r = "reload-config"
 
 # 🔧 **Resize Mode**
 [mode.resize.binding]
-    j = "resize smart -50"
-    k = "resize smart +50"
-    l = "resize smart -50"
-    semicolon = "resize smart +50"
-    enter = "mode main"
-    esc = "mode main"
-    cmd-r = "mode main"
+j = "resize smart -50"
+k = "resize smart +50"
+l = "resize smart -50"
+semicolon = "resize smart +50"
+enter = "mode main"
+esc = "mode main"
+ctrl-r = "mode main"
 
 # 🔧 **Service Mode (Advanced Controls)**
 [mode.service.binding]
-    esc = ["reload-config", "mode main"]
-    r = ["flatten-workspace-tree", "mode main"]  # Reset layout
-    f = ["layout floating tiling", "mode main"]  # Toggle floating/tiling
-    backspace = ["close-all-windows-but-current", "mode main"]
+esc = ["reload-config", "mode main"]
+r = ["flatten-workspace-tree", "mode main"]                # Reset layout
+f = ["layout floating tiling", "mode main"]                # Toggle floating/tiling
+backspace = ["close-all-windows-but-current", "mode main"]
 
-    # Join windows into single split container
-    cmd-shift-h = ["join-with left", "mode main"]
-    cmd-shift-j = ["join-with down", "mode main"]
-    cmd-shift-k = ["join-with up", "mode main"]
-    cmd-shift-l = ["join-with right", "mode main"]
+# Join windows into single split container
+# ctrl-shift-h = ["join-with left", "mode main"]
+# ctrl-shift-j = ["join-with down", "mode main"]
+# ctrl-shift-k = ["join-with up", "mode main"]
+# ctrl-shift-l = ["join-with right", "mode main"]
+ctrl-shift-left = ["join-with left", "mode main"]
+ctrl-shift-down = ["join-with down", "mode main"]
+ctrl-shift-up = ["join-with up", "mode main"]
+ctrl-shift-right = ["join-with right", "mode main"]
 
-    # 🔊 Volume Controls
-    down = "volume down"
-    up = "volume up"
-    shift-down = ["volume set 0", "mode main"]
+# 🔊 Volume Controls
+down = "volume down"
+up = "volume up"
+shift-down = ["volume set 0", "mode main"]
 
 # 💻 Setup workspaces by monitor
 [workspace-to-monitor-force-assignment]
-    # Workspaces 1-3 go to your main monitor
-    1 = "DELL U2415"
-    2 = "DELL U2415"
-    3 = "DELL U2415"
+# Workspaces 1-3 go to your main monitor
+1 = "DELL U2415"
+2 = "DELL U2415"
+3 = "DELL U2415"
 
-    # Workspaces 4-5 go to the laptop monitor
-    4 = "Built-in Retina Display"
-    5 = "Built-in Retina Display"
+# Workspaces 4-5 go to the laptop monitor
+4 = "Built-in Retina Display"
+5 = "Built-in Retina Display"
 
-    # Workspaces 6-7 go to the vertical monitor
-    6 = "DELL S2421Nx"
-    7 = "DELL S2421Nx"
+# Workspaces 6-7 go to the vertical monitor
+6 = "DELL S2421Nx"
+7 = "DELL S2421Nx"

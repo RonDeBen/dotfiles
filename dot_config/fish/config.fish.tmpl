@@ -70,7 +70,24 @@ function gi
     curl -sL https://www.gitignore.io/api/$argv
 end
 
+if test -e (brew --prefix asdf)/asdf.fish
+    source (brew --prefix asdf)/asdf.fish
+end
+
+# Ensure Fisher is installed
+if not functions -q fisher
+    echo "🎣 Fisher is missing, installing now..."
+    curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+end
+
+# Ensure Bass is installed via Fisher
+if not functions -q bass
+    echo "🎸 Bass is missing, installing now..."
+    fisher install edc/bass
+end
+
+bass source /Users/rondebenedetti/export-esp.sh
+
 # Use 'z' as the zoxide command
 zoxide init fish | source
 starship init fish | source
-
