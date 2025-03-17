@@ -124,16 +124,16 @@ echo "🔄 Installing Tmux plugins..."
 $HOME/.tmux/plugins/tpm/bin/install_plugins
 
 # 🔑 ** Set up GPG Pinentry for macOS**
-brew install pinentry-mac
-mkdir -p ~/.gnupg
-chmod 700 ~/.gnupg
-
-BREW_PREFIX=$(brew --prefix)
-echo "pinentry-program $BREW_PREFIX/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
-chmod 600 ~/.gnupg/gpg-agent.conf
-
-# Restart GPG agent
-gpgconf --kill gpg-agent
-gpgconf --launch gpg-agent
+#brew install pinentry-mac
+#mkdir -p ~/.gnupg
+#chmod 700 ~/.gnupg
+#
+#BREW_PREFIX=$(brew --prefix)
+#echo "pinentry-program $BREW_PREFIX/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
+#chmod 600 ~/.gnupg/gpg-agent.conf
+#
+## Restart GPG agent
+#gpgconf --kill gpg-agent
+#gpgconf --launch gpg-agent
 
 echo "🎉 ✅ macOS setup complete! 🚀"
